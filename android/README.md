@@ -1,6 +1,11 @@
-# SkyTrack
+# SkyTrack Android
 
 An Android application built with Kotlin and Jetpack Compose.
+
+## Related Repositories
+
+- **[SkyTrack (Main)](https://github.com/ikiugu/SkyTrack)** - Complete project overview and architecture
+- **[SkyTrack Server](https://github.com/ikiugu/SkyTrackServer)** - Spring Boot backend service
 
 ## Overview
 
