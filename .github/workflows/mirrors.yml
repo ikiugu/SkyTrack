@@ -12,6 +12,8 @@ on:
 jobs:
   mirror:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - name: Checkout code with full history
@@ -25,21 +27,9 @@ jobs:
           git config user.email "ikiugualf@gmail.com"
       
       - name: Mirror Android subtree
-        env:
-          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
-          if [ -z "$MIRROR_TOKEN" ]; then
-            echo "Error: MIRROR_TOKEN secret is not set"
-            exit 1
-          fi
-          git subtree push --prefix=android https://x-access-token:$MIRROR_TOKEN@github.com/ikiugu/SkyTrackAndroid.git main
+          git subtree push --prefix=android https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/ikiugu/SkyTrackAndroid.git main
       
       - name: Mirror Server subtree
-        env:
-          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
-          if [ -z "$MIRROR_TOKEN" ]; then
-            echo "Error: MIRROR_TOKEN secret is not set"
-            exit 1
-          fi
-          git subtree push --prefix=server https://x-access-token:$MIRROR_TOKEN@github.com/ikiugu/SkyTrackServer.git main
+          git subtree push --prefix=server https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/ikiugu/SkyTrackServer.git main
