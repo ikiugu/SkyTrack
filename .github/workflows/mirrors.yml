@@ -39,7 +39,7 @@ jobs:
             git push --force https://github.com/ikiugu/SkyTrackAndroid.git ${{ steps.split_android.outputs.sha }}:main
           else
             echo "First push to empty repository"
-            git push https://github.com/ikiugu/SkyTrackAndroid.git ${{ steps.split_android.outputs.sha }}:main
+            git push https://github.com/ikiugu/SkyTrackAndroid.git ${{ steps.split_android.outputs.sha }}:refs/heads/main
           fi
 
   mirror-server:
@@ -69,5 +69,5 @@ jobs:
             git push --force https://github.com/ikiugu/SkyTrackServer.git ${{ steps.split_server.outputs.sha }}:main
           else
             echo "First push to empty repository"
-            git push https://github.com/ikiugu/SkyTrackServer.git ${{ steps.split_server.outputs.sha }}:main
+            git push https://github.com/ikiugu/SkyTrackServer.git ${{ steps.split_server.outputs.sha }}:refs/heads/main
           fi
