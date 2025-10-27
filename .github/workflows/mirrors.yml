@@ -1,35 +1,58 @@
-name: Mirror Subtree
+name: Mirrors
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
     paths:
-      - 'android/**'
-      - 'server/**'
-      - '.github/workflows/mirrors.yml'
+      - "android/**"
+      - "server/**"
+
+permissions:
+  contents: write
 
 jobs:
-  mirror:
+  mirror-android:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    
     steps:
-      - name: Checkout code with full history
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+          persist-credentials: false
+
       - name: Configure Git
         run: |
           git config user.name "ikiugu"
           git config user.email "ikiugualf@gmail.com"
-      
-      - name: Mirror Android subtree
+
+      - name: Use PAT for github.com
+        run: git config url."https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Split android subtree
+        id: split_android
+        run: echo "sha=$(git subtree split --prefix=android HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Push to SkyTrackAndroid
+        run: git push --force https://github.com/ikiugu/SkyTrackAndroid.git ${{ steps.split_android.outputs.sha }}:main
+
+  mirror-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configure Git
         run: |
-          git subtree push --prefix=android https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/ikiugu/SkyTrackAndroid.git main
-      
-      - name: Mirror Server subtree
-        run: |
-          git subtree push --prefix=server https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/ikiugu/SkyTrackServer.git main
+          git config user.name "ikiugu"
+          git config user.email "ikiugualf@gmail.com"
+
+      - name: Use PAT for github.com
+        run: git config url."https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Split server subtree
+        id: split_server
+        run: echo "sha=$(git subtree split --prefix=server HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Push to SkyTrackServer
+        run: git push --force https://github.com/ikiugu/SkyTrackServer.git ${{ steps.split_server.outputs.sha }}:main
