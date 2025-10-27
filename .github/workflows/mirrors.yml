@@ -33,7 +33,14 @@ jobs:
         run: echo "sha=$(git subtree split --prefix=android HEAD)" >> $GITHUB_OUTPUT
 
       - name: Push to SkyTrackAndroid
-        run: git push --force https://github.com/ikiugu/SkyTrackAndroid.git ${{ steps.split_android.outputs.sha }}:main
+        run: |
+          if git ls-remote --heads https://github.com/ikiugu/SkyTrackAndroid.git main 2>/dev/null | grep -q main; then
+            echo "Branch exists, using force push"
+            git push --force https://github.com/ikiugu/SkyTrackAndroid.git ${{ steps.split_android.outputs.sha }}:main
+          else
+            echo "First push to empty repository"
+            git push https://github.com/ikiugu/SkyTrackAndroid.git ${{ steps.split_android.outputs.sha }}:main
+          fi
 
   mirror-server:
     runs-on: ubuntu-latest
@@ -56,4 +63,11 @@ jobs:
         run: echo "sha=$(git subtree split --prefix=server HEAD)" >> $GITHUB_OUTPUT
 
       - name: Push to SkyTrackServer
-        run: git push --force https://github.com/ikiugu/SkyTrackServer.git ${{ steps.split_server.outputs.sha }}:main
+        run: |
+          if git ls-remote --heads https://github.com/ikiugu/SkyTrackServer.git main 2>/dev/null | grep -q main; then
+            echo "Branch exists, using force push"
+            git push --force https://github.com/ikiugu/SkyTrackServer.git ${{ steps.split_server.outputs.sha }}:main
+          else
+            echo "First push to empty repository"
+            git push https://github.com/ikiugu/SkyTrackServer.git ${{ steps.split_server.outputs.sha }}:main
+          fi
