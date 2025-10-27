@@ -6,6 +6,7 @@ on:
     paths:
       - "android/**"
       - "server/**"
+      - ".github/workflows/mirrors.yml"
 
 permissions:
   contents: write
