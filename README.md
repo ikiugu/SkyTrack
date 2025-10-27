@@ -2,6 +2,11 @@
 
 SkyTrack is a polished end-to-end project that uses live aviation data, generative AI, and event-driven design to deliver a world-class travel experience. It demonstrates sophisticated backend and mobile engineering while remaining achievable for an MVP within four days.
 
+## Related Repositories
+
+- **[SkyTrack Android](https://github.com/ikiugu/SkyTrackAndroid)** - Android mobile application (Jetpack Compose)
+- **[SkyTrack Server](https://github.com/ikiugu/SkyTrackServer)** - Spring Boot backend service
+
 ## Overview
 
 This system is designed around Emirates-like operations: users can search, book, and check-in for flights, receive live gate changes and delays, and chat with an AI assistant—all powered by Spring Boot, Kafka, GraphQL, and Jetpack Compose.
