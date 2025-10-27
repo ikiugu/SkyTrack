@@ -1,0 +1,33 @@
+name: Mirror Subtree
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'android/**'
+      - 'server/**'
+      - '.github/workflows/mirrors.yml'
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Configure Git
+        run: |
+          git config user.name "ikiugu"
+          git config user.email "ikiugualf@gmail.com"
+      
+      - name: Mirror Android subtree
+        run: |
+          git subtree push --prefix=android https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/ikiugu/SkyTrackAndroid.git main
+      
+      - name: Mirror Server subtree
+        run: |
+          git subtree push --prefix=server https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/ikiugu/SkyTrackServer.git main
