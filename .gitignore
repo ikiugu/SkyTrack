@@ -1,0 +1,143 @@
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE Files
+.idea/
+*.iws
+*.ipr
+*.iml
+.vscode/
+.eclipse/
+.classpath
+.project
+.settings/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Java / Spring Boot
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*
+
+# Kotlin
+*.kt.class
+*.ktmodule
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# Android
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.aab
+*.dex
+bin/
+gen/
+out/
+release/
+*.keystore
+!debug.keystore
+*.jks
+*.p12
+*.der
+*.crt
+*.cer
+*.pem
+*.cert
+*.key
+*.private
+*.public
+
+# Application Configuration
+application*.properties
+application*.yml
+*.env
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+log/
+*.log
+*.hprof
+
+# Kafka
+kafka-logs/
+zookeeper-logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.h2.db
+
+# Node (if using any Node tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.swp
+*.swo
+*~
+*~.nib
+
+# Documentation Build
+docs/_build/
+docs/build/
+site/
+
+# Test Coverage
+.nyc_output/
+coverage/
+*.lcov
+.cache/
+test-results/
+junit.xml
