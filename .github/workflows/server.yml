@@ -13,7 +13,7 @@ on:
       - '.github/workflows/server.yml'
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
     
     steps:
@@ -27,27 +27,10 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
       
-      - name: Start Kafka with Docker Compose
-        run: |
-          docker-compose up -d
-        working-directory: server
-        continue-on-error: true
-      
       - name: Grant execute permission for gradlew
         run: chmod +x server/gradlew
         working-directory: .
       
-      - name: Build with Gradle
-        run: ./gradlew build
-        working-directory: server
-      
       - name: Run tests
         run: ./gradlew test
         working-directory: server
-      
-      - name: Stop Kafka
-        run: |
-          docker-compose down
-        working-directory: server
-        if: always()
-        continue-on-error: true
