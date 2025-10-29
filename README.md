@@ -9,7 +9,7 @@ SkyTrack is a polished end-to-end project that uses live aviation data, generati
 
 ## Overview
 
-This system is designed around Emirates-like operations: users can search, book, and check-in for flights, receive live gate changes and delays, and chat with an AI assistant—all powered by Spring Boot, Kafka, GraphQL, and Jetpack Compose.
+This system is designed around airline-scale operations: users can search, book, and check-in for flights, receive live gate changes and delays, and chat with an AI assistant—all powered by Spring Boot, Kafka, GraphQL, and Jetpack Compose.
 
 ## Architecture
 

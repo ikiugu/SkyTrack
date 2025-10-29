@@ -161,7 +161,7 @@ subscription FlightUpdates($bookingId: ID!) {
 ```json
 {
   "flightNumber": "EK205",
-  "airline": "Emirates",
+  "airline": "Airline",
   "type": "DELAY",
   "departure": {
     "airport": "DXB",
